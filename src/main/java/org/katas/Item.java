@@ -1,9 +1,21 @@
 package org.katas;
 
 public class Item {
+    /**
+     * 魔法棒
+     */
     public static final String SULFURAS = "Sulfuras";
+    /**
+     * 干酪，类似普洱茶
+     */
     public static final String AGED_BRIE = "Aged Brie";
+    /**
+     * 后台门票
+     */
     public static final String BACKSTAGE_PASSES = "Backstage passes";
+    /**
+     * 普通商品
+     */
     public static final String NORMAL = "Normal";
     private final int sellIn;
     private final int quality;
@@ -27,8 +39,11 @@ public class Item {
     }
 
     public Item updateSellInAndQuality() {
+
         if (this.name.equals(SULFURAS)) {
-            return new Item(this.name, sellIn - 1, quality);
+            SulfurasRule sulfurasRule = new SulfurasRule();
+            return sulfurasRule.update(this.name,this.sellIn,this.quality);
+            //return new Item(this.name, sellIn - 1, quality);
         }
         if (this.name.equals(AGED_BRIE)) {
             return new Item(this.name, sellIn - 1, notGreaterThanFifty(quality + 1));
